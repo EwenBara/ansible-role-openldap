@@ -6,8 +6,8 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: instance
-    image: centos:7
+  - name: Archlinux
+    image: archlinux:latest
 provisioner:
   name: ansible
   lint:

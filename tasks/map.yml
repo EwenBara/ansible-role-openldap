@@ -26,10 +26,10 @@
 
 - name: compute configuration
   set_fact:
-    hello_world: "{{ default.hello_world | default({}) | combine(
-      osfamilymap[ansible_os_family].hello_world is defined | ternary(osfamilymap[ansible_os_family].hello_world, {}),
-      distributionmap[ansible_distribution].hello_world is defined | ternary(distributionmap[ansible_distribution].hello_world, {}),
-      fingerprintmap[ansible_fingerprint].hello_world is defined | ternary(fingerprintmap[ansible_fingerprint].hello_world, {}),
-      hello_world | default({}),
+    openldap: "{{ default.openldap | default({}) | combine(
+      osfamilymap[ansible_os_family].openldap is defined | ternary(osfamilymap[ansible_os_family].openldap, {}),
+      distributionmap[ansible_distribution].openldap is defined | ternary(distributionmap[ansible_distribution].openldap, {}),
+      fingerprintmap[ansible_fingerprint].openldap is defined | ternary(fingerprintmap[ansible_fingerprint].openldap, {}),
+      openldap | default({}),
       recursive=True
       ) }}"
