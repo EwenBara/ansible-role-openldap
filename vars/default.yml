@@ -1,1 +1,6 @@
 ---
+
+openldap:
+  ansible_dependencies: python-ldap
+  packages:
+  service_name: slapd

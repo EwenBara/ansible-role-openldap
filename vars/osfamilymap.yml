@@ -1,1 +1,13 @@
 ---
+
+Archlinux:
+  openldap:
+    packages: openldap
+
+RedHat:
+  openldap:
+    packages: openldap-servers
+
+Debian:
+  openldap:
+    packages: slapd
