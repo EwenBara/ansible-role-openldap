@@ -1,0 +1,6 @@
+---
+
+- name: install ansible dependencies
+  package:
+    name: "{{ openldap.ansible_dependencies }}"
+    state: present

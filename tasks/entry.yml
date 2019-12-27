@@ -1,0 +1,15 @@
+---
+
+- name: "{{ dn }}"
+  ldap_entry:
+    dn: "{{ dn }}"
+    objectClass: "{{ objectClass }}"
+    attributes: "{{ attributes }}"
+
+- name: "{{ dn }} attributes"
+  ldap_attr:
+    state: exact
+    dn: "{{ dn }}"
+    name: "{{ item.key }}"
+    values: "{{ item.value }}"
+  loop: "{{ attributes | dict2items }}"
