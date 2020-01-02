@@ -1,0 +1,7 @@
+---
+
+- name: enable and start
+  service:
+    name: "{{ openldap.service_name }}"
+    state: started
+    enabled: yes

@@ -1,0 +1,37 @@
+---
+
+- name: get slapd.d folder informations
+  stat:
+    path: "{{ openldap.config_path }}"
+  register: config
+  listen: clean install
+
+- name: clean slapd.d folder
+  file:
+    state: "{{ item }}"
+    path: "{{ openldap.config_path }}"
+    owner: "{{ config.stat.pw_name }}"
+    group: "{{ config.stat.gr_name }}"
+    mode: "{{ config.stat.mode }}"
+  loop:
+    - absent
+    - directory
+  listen: clean install
+
+- name: get openldap-data folder informations
+  stat:
+    path: "{{ openldap.data_path }}"
+  register: data
+  listen: clean install
+
+- name: clean openldap-data folder
+  file:
+    state: "{{ item }}"
+    path: "{{ openldap.data_path }}"
+    owner: "{{ data.stat.pw_name }}"
+    group: "{{ data.stat.gr_name }}"
+    mode: "{{ data.stat.mode }}"
+  loop:
+    - absent
+    - directory
+  listen: clean install

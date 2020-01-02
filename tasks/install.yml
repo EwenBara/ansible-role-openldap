@@ -1,0 +1,17 @@
+---
+
+- name: enable PowerTools repository
+  ini_file:
+    dest: "/etc/yum.repos.d/{{ ansible_distribution }}-PowerTools.repo"
+    section: PowerTools
+    option: enabled
+    value: "1"
+  when: ansible_facts['os_family'] == "RedHat" and ansible_facts['distribution_major_version'] == "8"
+
+- name: install
+  package:
+    name: "{{ openldap.packages }}"
+    state: present
+  notify: clean install
+
+- meta: flush_handlers

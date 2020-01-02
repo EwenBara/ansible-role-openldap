@@ -3,11 +3,17 @@
 Archlinux:
   openldap:
     packages: openldap
+    config_path: /etc/openldap/slapd.d
+    data_path: /var/lib/openldap/openldap-data
 
 RedHat:
   openldap:
     packages: openldap-servers
+    config_path: /etc/openldap/slapd.d
+    data_path: /var/lib/ldap
 
 Debian:
   openldap:
     packages: slapd
+    config_path:
+    data_path:
