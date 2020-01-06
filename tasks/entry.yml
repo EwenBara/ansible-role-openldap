@@ -10,6 +10,8 @@
   ldap_attr:
     state: exact
     dn: "{{ dn }}"
-    name: "{{ item.key }}"
-    values: "{{ item.value }}"
+    name: "{{ attr.key }}"
+    values: "{{ attr.value }}"
   loop: "{{ attributes | dict2items }}"
+  loop_control:
+    loop_var: attr
