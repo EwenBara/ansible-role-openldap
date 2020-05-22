@@ -5,9 +5,3 @@
 - include: install.yml
 - include: service.yml
 - include: configure.yml
-
-# - name: debug
-#   debug:
-#     msg: "{{ item.value | combine({objectClass={}}, recursive) }}"
-#   loop:
-#     "{{ openldap.entries | dict2items }}"
