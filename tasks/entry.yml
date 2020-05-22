@@ -1,17 +1,28 @@
 ---
 
+- name: get credential
+  set_fact:
+    credential: '{{ item.value }}'
+  when: dn is regex('.*'~item.key)
+  loop: "{{ openldap.credentials | default({}) | dict2items }}"
+  no_log: true
+
 - name: "{{ dn }}"
   ldap_entry:
     dn: "{{ dn }}"
     objectClass: "{{ objectClass }}"
     attributes: "{{ attributes }}"
+  args:
+    server_uri: '{{ credential.server_uri }}'
+    bind_dn: '{{ credential.bind_dn }}'
+    bind_pw: '{{ credential.bind_pw }}'
 
 - name: "{{ dn }} attributes"
-  ldap_attr:
-    state: exact
+  ldap_attrs:
     dn: "{{ dn }}"
-    name: "{{ attr.key }}"
-    values: "{{ attr.value }}"
-  loop: "{{ attributes | dict2items }}"
-  loop_control:
-    loop_var: attr
+    attributes: "{{ attributes }}"
+    state: exact
+  args:
+    server_uri: '{{ credential.server_uri }}'
+    bind_dn: '{{ credential.bind_dn }}'
+    bind_pw: '{{ credential.bind_pw }}'
